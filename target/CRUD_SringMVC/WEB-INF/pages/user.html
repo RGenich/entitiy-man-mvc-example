@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User details</title>
+</head>
+<body>
+
+<form th:object="${user}" th:method="post" th:action="@{/users(edit=${'true'})}">
+    <h1 th:text="${user.id}"></h1>
+    <label>Full name:</label>
+    <input name="fullname" type="text" th:value="${user.fullName}">
+    <p>
+        <label>Age:</label>
+        <input name="age" type="number" th:value="${user.age}">
+    <p>
+        <label>Sex:</label>
+    <p>
+        <input required type="radio" name="sex" value="male" th:checked="${user.sex.MALE}">Male
+        <input required type="radio" name="sex" value="female" th:checked="${user.sex.FEMALE}">Female
+        <input type="submit" value="Save">
+</form>
+
+
+</body>
+</html>
