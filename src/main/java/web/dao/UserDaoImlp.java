@@ -21,7 +21,7 @@ public class UserDaoImlp implements UserDao {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(Integer id) {
         entityManager.remove(entityManager.find(User.class, id));
     }
 
@@ -31,12 +31,20 @@ public class UserDaoImlp implements UserDao {
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(Integer id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
     public List<User> showUsers() {
         return entityManager.createQuery("from User").getResultList();
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+
+        return (User) entityManager.createQuery("select u from User u where u.login=:login")
+                .setParameter("login", login)
+                .getSingleResult();
     }
 }
